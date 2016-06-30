@@ -1,0 +1,42 @@
+[user]
+	email = my@email.fr
+	name = myname
+[color]
+	branch = auto
+	ui = true
+[core]
+	editor = vi
+	## autocrlf = input
+[alias]
+	## working on commits
+        # commit to previous commit
+	caa = commit -a --amend -C HEAD
+	ci = commit
+	co = checkout
+	dc = diff --cached
+	lg = log --graph --abbrev-commit --decorate --format=format:'%C(yellow)%h%C(reset) %C(normal)%s%C(reset) %C(dim white)%an%C(reset) %C(cyan)(%ar)%C(reset) %C(auto)%d%C(reset)'
+	lgp = log --graph --abbrev-commit --decorate --format=format:'%C(yellow)%h%C(reset) %C(normal)%s%C(reset) %C(dim white)%an%C(reset) %C(cyan)(%ar)%C(reset) %C(auto)%d%C(reset)' --first-parent
+	
+	## working on branches
+	br = branch
+	bn = "!git rev-parse --abbrev-ref HEAD" 	# branche name
+	clean-merged = !git branch --merged \
+			| grep -v \"\\*\" \
+			| xargs -n 1 git branch -d
+        publish = "!git push -u origin $(git bn)"	# set upstream and push
+	## alternative to pull.rebase = true
+	# pullr = pull --rebase
+	pushf = push --force	
+        unpublish = "!git push origin :$(git bn)"	# delete remote	
+	whatsnew = "!git diff origin/$(git bn)...HEAD"
+	whatscoming = "!git diff HEAD...origin/$(git bn)"
+
+        # misc
+        rz = !git reset --hard HEAD && git clean -df
+	st = status
+[pull]
+	rebase = true
+[push]
+	default = simple
+[fetch]
+	prune = true
