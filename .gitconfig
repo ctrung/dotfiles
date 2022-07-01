@@ -40,6 +40,9 @@
         whatsnew = "!git diff origin/$(git bn)...HEAD"
         whatscoming = "!git diff HEAD...origin/$(git bn)"
 
+        # exemple d'alias avec paramètres
+        #foo = "!f() { echo $3 $2 $1; }; f"
+		
         # misc
         rz = reset --hard
         rza = !git reset --hard HEAD && git clean -df
